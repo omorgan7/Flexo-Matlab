@@ -1,4 +1,4 @@
-function lerpmesh(mesh1, mesh2)
+function rigidinterp(mesh1, mesh2)
 [v1,vi] = loadmesh(mesh1);
 [v2,~] = loadmesh(mesh2);
 
