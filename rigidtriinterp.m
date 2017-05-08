@@ -27,7 +27,7 @@ S = V'*S_SVD*V;
 figure(1);
 clf;
 %axis([0, 6, 0, 6]);
-t = 1/(10);
+t = 1/(24);
 alpha = acos(Ry(1))/2;
 
 for i = 0:t:1

@@ -16,6 +16,13 @@ v2 = v2(:,1:2);
 figure(1);
 axis([-2, 2, -4, 4]);
 t = 1/(10);
+
+A = zeros(2*length(v2));
+for i = 1:length(v1)
+    for j = 1:3
+        A(i,2*vi(i,j)-1:2*vi(i,j)) = v1(vi(i,j),:);
+    end
+end
 for i = 0:t:1
     newV = (1-i)*v1 + i*v2;
     clf;
