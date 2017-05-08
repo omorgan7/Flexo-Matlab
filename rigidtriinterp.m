@@ -4,8 +4,8 @@ q_interp = q;
 
 M = zeros(6,6);
 for i=1:3
-    M(2*i-1,:) = [p(i,1),p(i,2),0,0,1,0];
-    M(2*i,:) = [0,0,p(i,1),p(i,2),0,1];
+    M(2*i-1,:) = [p(i,1),p(i,2),1,0,0,0];
+    M(2*i,:) = [0,0,0,p(i,1),p(i,2),1];
 end
 
 q_prime = q';
@@ -13,7 +13,7 @@ q_prime = q_prime(:);
 
 Al = ((M'*M)^-1)*M'*q_prime;
 
-A = [Al(1),Al(2);Al(3),Al(4)];
+A = [Al(1),Al(2);Al(4),Al(5)];
 
 [U,S_SVD,V] = svd(A);
 
@@ -36,7 +36,7 @@ for i = 0:t:1
     R_interp = R_interp(1:2,1:2);
     newA = R_interp*((1-i)*eye(2) + i*S);
     for j = 1:3
-        q_interp(j,:) = newA*p(j,:)' + i*Al(5:6);
+        q_interp(j,:) = newA*p(j,:)' + i*[Al(3),Al(6)];
     end
     axis([0, 6, 0, 6]);
     hold on;

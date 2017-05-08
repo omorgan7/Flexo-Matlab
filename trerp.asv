@@ -1,4 +1,4 @@
-function [P_inv,A] = trerp(p,q)
+function [p_inv,a_out] = trerp(p,q)
 %rigid triangle interpolation
 q_interp = q;
 
@@ -10,9 +10,14 @@ end
 
 q_prime = q';
 q_prime = q_prime(:);
-P_inv = (M'*M)^-1*M';
-Al = P_inv*q_prime;
-P_inv = [P_inv(1:2,:);P_inv(4:5,:)];
-A = [Al(1),Al(2);Al(4),Al(5)];
+
+Al = ((M'*M)^-1)*M'*q_prime;
+
+A = [Al(1),Al(2);Al(4),Al(4)];
+
+[U,S_SVD,V] = svd(A);
+
+
+p_inv = q_interp;
 end
 
